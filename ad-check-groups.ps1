@@ -22,8 +22,8 @@ function FileChk
 	return $filename
 }
 
-$importfile = "\\iasamenwerking.nl\dfs$\Applicaties\Samenwerking\Powershell\IE-keys\users.csv"
-$logfile = "\\iasamenwerking.nl\dfs$\Applicaties\Samenwerking\Powershell\IE-Keys\usergroups-" + (Get-Date -Format dd-MM-yyyy) + ".log"
+$importfile = "\\location\dfs$\Applicaties\Samenwerking\Powershell\IE-keys\users.csv"
+$logfile = "\\location\dfs$\Applicaties\Samenwerking\Powershell\IE-Keys\usergroups-" + (Get-Date -Format dd-MM-yyyy) + ".log"
 $err = 0
 if (Test-Path $logfile)
 {
@@ -153,7 +153,7 @@ Write-Output $csv | Out-File -FilePath $logfile -Append -NoClobber
 if ($err -eq 1)
 {
 	"Mail naar helpdesk" | Out-File -FilePath $logfile -Append -NoClobber
-	Send-MailMessage -To helpdesk@vlissingen.nl, opperhoofd@vlissingen.nl -Subject "Script adusercheck heeft gedraaid" -Body "Script adusercheck om groepen te controleren of de goede users lid zijn heeft gedraaid. Er zijn afwijkingen gevonden, controleer de logfile" -From no-reply@iasamenwerking.nl -attachments $logfile -Port 25 -SmtpServer smtp-intern.iasamenwerking.nl
+	Send-MailMessage -To helpdesk, opperhoofd -Subject "Script adusercheck heeft gedraaid" -Body "Script adusercheck om groepen te controleren of de goede users lid zijn heeft gedraaid. Er zijn afwijkingen gevonden, controleer de logfile" -From no-reply -attachments $logfile -Port 25 -SmtpServer smtp-server
 }
 else
 {
