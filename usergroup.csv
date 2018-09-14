@@ -1,0 +1,5 @@
+group,SamAccountName  
+
+## First line is needed to determine the members of the object
+## Starting with the second line, enter the AD Groupname and the AD User name, seperated with only a comma, no spaces.
+## Like Domain Admins,Administrator. These last three lines, starting with ## need to be removed.
